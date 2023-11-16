@@ -1,7 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 
-bus_t bus = {NULL, NULL, NULL, 0};
+static bus_t bus = {NULL, NULL, NULL, 0};
 
 /**
  * main - The monty code interpreter.
