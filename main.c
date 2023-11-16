@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 /**
  * open_file - Opens a Monty bytecode file for reading
