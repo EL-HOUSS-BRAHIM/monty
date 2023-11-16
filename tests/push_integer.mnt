@@ -1,0 +1,4 @@
+push 42
+push -17
+push 0
+pall
