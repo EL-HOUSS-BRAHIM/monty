@@ -10,26 +10,18 @@
 int exec(char *cont, stack_t **stack, unsigned int count, FILE *file)
 {
 instruction_t opst[] = {
-{"push", push}, {"pall", pall}, {"pint", pte},
-{"pop", custom_print},
-{"swap", swap},
-{"add", atte},
-{"nop", non},
-{"sub", sub},
+{"push", push}, {"pall", pall}, {"pint", pte}, {"pop", custom_print},
+{"swap", swap}, {"add", atte},
+{"nop", non}, {"sub", sub},
 {"div", ants},
-{"mul", mult_to_2},
-{"mod", mod_top_2},
-{"pchar", pcfs},
-{"pstr", pc},
-{"rotl", rotatestack},
-{"rotr", rotr},
-{"queue", setQueueMode},
-{"stack", print_stack},
+{"mul", mult_to_2}, {"mod", mod_top_2},
+{"pchar", pcfs}, {"pstr", pc},
+{"rotl", rotatestack}, {"rotr", rotr},
+{"queue", setQueueMode}, {"stack", print_stack},
 {NULL, NULL}
 };
 unsigned int i = 0;
 char *op;
-
 op = strtok(cont, " \n\t");
 if (op && op[0] == '#')
 return (0);
