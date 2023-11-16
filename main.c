@@ -1,50 +1,57 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
 #include "monty.h"
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+bus_t bus = {NULL, NULL, NULL, 0};
+
+/**
+ * main - The Monty code interpreter
+ * @argc: The number of arguments
+ * @argv: The Monty file location
+ * Return: 0 on success
+ */
+int main(int argc, char *argv[])
+{
+    char *content;
+    FILE *file;
+    size_t size = 0;
+    ssize_t read_line = 1;
+    stack_t *stack = NULL;
+    unsigned int counter = 0;
+
+    if (argc != 2)
+    {
+        fprintf(stderr, "USAGE: monty file\n");
         exit(EXIT_FAILURE);
     }
 
-    FILE *file = fopen(argv[1], "r");
-    if (file == NULL) {
+    file = fopen(argv[1], "r");
+    bus.file = file;
+
+    if (!file)
+    {
         fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
 
-    Stack stack;
-    stack.top = -1;
+    while (read_line > 0)
+    {
+        content = NULL;
+        read_line = getline(&content, &size, file);
+        bus.content = content;
+        counter++;
 
-    char opcode[100];
-    int value, line_number = 0;
-
-    while (fscanf(file, "%s", opcode) != EOF) {
-        line_number++;
-        if (strcmp(opcode, "push") == 0) {
-            if (fscanf(file, "%d", &value) != 1) {
-                fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                exit(EXIT_FAILURE);
-            }
-            push(&stack, value, line_number);
-        } else if (strcmp(opcode, "pall") == 0) {
-            pall(&stack);
-        } else if (strcmp(opcode, "pint") == 0) {
-            pint(&stack, line_number);
-        } else if (strcmp(opcode, "pop") == 0) {
-            pop(&stack, line_number);
-        } else if (strcmp(opcode, "swap") == 0) {
-            swap(&stack, line_number);
-        } else if (strcmp(opcode, "add") == 0) {
-            add(&stack, line_number);
-        } else if (strcmp(opcode, "nop") == 0) {
-            nop();
-        } else {
-            fprintf(stderr, "L%d: unknown opcode %s\n", line_number, opcode);
-            exit(EXIT_FAILURE);
+        if (read_line > 0)
+        {
+            execute_(content, &stack, counter, file);
         }
+
+        free(content);
     }
 
+    free_stack(stack);
     fclose(file);
 
-    return 0;
+    return (0);
 }
