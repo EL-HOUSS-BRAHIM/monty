@@ -46,3 +46,19 @@ free_stack(stack);
 fclose(file);
 return (0);
 }
+/**
+ * free_stack - Frees the doubly linked list.
+ * @head: A pointer to the stack's head.
+ */
+void free_stack(stack_t *head)
+{
+	stack_t *aux;
+
+	aux = head;
+	while (head)
+	{
+		aux = head->next;
+		free(head);
+		head = aux;
+	}
+}

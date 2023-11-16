@@ -2,7 +2,7 @@
 /**
  * push - Add node to the stack.
  * @head: A pointer to the stack's head.
- * @counter: The line number.
+ * @count: The line number.
  * Return: No return value.
  */
 void push(stack_t **head, unsigned int count)
@@ -20,7 +20,7 @@ flag = 1;
 }
 if (flag == 1)
 {
-fprintf(stderr, "L%d: usage: push integer\n", counter);
+fprintf(stderr, "L%d: usage: push integer\n", count);
 fclose(bus.file);
 free(bus.cont);
 free_stack(*head);
@@ -29,7 +29,7 @@ exit(EXIT_FAILURE);
 }
 else
 {
-fprintf(stderr, "L%d: usage: push integer\n", counter);
+fprintf(stderr, "L%d: usage: push integer\n", count);
 fclose(bus.file);
 free(bus.cont);
 free_stack(*head);
@@ -44,13 +44,13 @@ addToQueue(head, n);
 /**
  * setQueueMode - Sets the stack to queue mode (FIFO).
  * @head: A pointer to the stack's head.
- * @counter: The line number.
+ * @count: The line number.
  * Return: No return value.
  */
 void setQueueMode(stack_t **head, unsigned int count)
 {
 (void)head;
-(void)counter;
+(void)count;
 bus.lifi = 1;
 }
 /**
@@ -90,7 +90,7 @@ new_node->prev = aux;
 /**
  * rotatestack - Rotates the stack to the top.
  * @head: The stack head.
- * @counter: The line number.
+ * @count: The line number.
  * Return: No return value.
  */
 void rotatestack(stack_t **head, __attribute__((unused)) unsigned int count)
