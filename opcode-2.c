@@ -38,8 +38,8 @@ free(h);
  */
 void non(stack_t **head, unsigned int count)
 {
-  (void) count;
-  (void) head;
+(void) count;
+(void) head;
 }
 /**
  * pall - Print the elements of the stack.
