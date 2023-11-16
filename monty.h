@@ -20,3 +20,5 @@ void pop(Monty *monty, int line_number);
 void swap(Monty *monty, int line_number);
 void add(Monty *monty, int line_number);
 void nop(void);
+FILE *open_file(char *filename);
+void process_inst(Monty *monty, char *opcode, int value, int line_number);
